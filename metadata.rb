@@ -4,7 +4,7 @@ maintainer_email 'derek.smart@delphix.com'
 license 'Apache-2.0'
 description 'Installs/Configures target hosts for use by the Delphix platform'
 long_description 'Installs/Configures target hosts for use by the Delphix platform'
-version '0.1.1'
+version '0.1.2'
 chef_version '>= 12.14' if respond_to?(:chef_version)
 depends 'ssh_authorized_keys', '~> 0.4.0'
 

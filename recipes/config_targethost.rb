@@ -44,7 +44,7 @@ file "/home/#{node['delphix']['user']}/.ssh/authorized_keys" do
   mode '0600'
 end
 
-if node['delphix']['ssh']['user'] != '' and node['delphix']['ssh']['key']
+if node['delphix']['ssh']['user'] != '' && node['delphix']['ssh']['key']
   ssh_authorize_key node['delphix']['ssh']['user'] do
     key node['delphix']['ssh']['key']
     user node['delphix']['user']
@@ -52,7 +52,7 @@ if node['delphix']['ssh']['user'] != '' and node['delphix']['ssh']['key']
 end
 
 bash "configure-delphix-user-for-sudo-tty'" do
-  user "root"
+  user 'root'
   code <<-EOS
   echo 'Defaults:delphix_user !requiretty' >> /etc/sudoers
   EOS
@@ -60,7 +60,7 @@ bash "configure-delphix-user-for-sudo-tty'" do
 end
 
 bash "configure-delphix-user-for-sudoers'" do
-  user "root"
+  user 'root'
   code <<-EOS
   echo 'delphix_user ALL=NOPASSWD: /bin/mount, /bin/umount, /bin/ps, /bin/mkdir, /bin/rmdir' >> /etc/sudoers
   EOS
