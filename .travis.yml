@@ -1,5 +1,4 @@
 sudo: required
-dist: trusty
 
 addons:
   apt:
@@ -14,9 +13,20 @@ install: echo "skip bundle install"
 services: docker
 
 env:
+  global:
+  - KITCHEN_YAML=.kitchen.yml
   matrix:
   - INSTANCE=centos-7
   - INSTANCE=ubuntu-1604
+
+before_script:
+  - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
+  - eval "$(chef shell-init bash)"
+  - chef --version
+  - cookstyle --version
+  - foodcritic --version
+
+script: kitchen verify ${INSTANCE}
 
 matrix:
   include:
