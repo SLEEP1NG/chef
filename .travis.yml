@@ -15,13 +15,11 @@ services: docker
 
 env:
   matrix:
-  - INSTANCE=config-centos-6
-  - INSTANCE=config-centos-7
-  - INSTANCE=module22-centos-6
-  - INSTANCE=module24-centos-7
-  - INSTANCE=module24-ubuntu-1404
-  - INSTANCE=module24-ubuntu-1604
-  
+  - INSTANCE=centos-6
+  - INSTANCE=centos-7
+  - INSTANCE=ubuntu-1404
+  - INSTANCE=ubuntu-1604
+
 before_script:
   - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
   - eval "$(chef shell-init bash)"
